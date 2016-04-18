@@ -37,7 +37,6 @@ angular.module('contactsApp')
 				return book.displayName === ctrl.contact.addressBookId;
 			});
 		}
-		ctrl.loading = false;
 	});
 
 	$scope.$watch('ctrl.uid', function(newValue) {
@@ -51,6 +50,7 @@ angular.module('contactsApp')
 			return;
 		}
 		ContactService.getById(uid).then(function(contact) {
+			ctrl.loading = false;
 			ctrl.contact = contact;
 			ctrl.photo = ctrl.contact.photo();
 			ctrl.show = true;
